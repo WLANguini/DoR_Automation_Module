@@ -7,11 +7,22 @@ from DoR_Automation_Module.src.data_processing import processing_data
 
 tick = "AAPL"
 ticker = yf.Ticker(tick)
-data = ticker.history(period = "max")
-df = pd.DataFrame(data)
-df = df.reset_index()
 
-df.to_csv("DoR_Automation_Module/datasets/AAPL_DoR_Daily")
+timeframes = {
+    "Daily" : "1d",
+    "Weekly" : "1wk",
+    "Monthly" : "1mo",
+    "Quarterly" : "3mo"
+}
+
+for name, interval in timeframes.items():
+    data = ticker.history(period = "max", interval = interval)
+    df = pd.DataFrame(data)
+    df = df.reset_index()
+    df.to_csv(f"DoR_Automation_Module/datasets/{tick}_DoR_{name}.csv", index=False)
+    print(f"Fisier {tick}_DoR_{name} salvat")
+
+
 
 DATASET_PATH = "DoR_Automation_Module/datasets"
 
