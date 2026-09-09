@@ -3,7 +3,7 @@ import numpy as np
 import yfinance as yf
 import os
 from DoR_Automation_Module.src.data_cleaning import data_cleaning as clean_data
-from DoR_Automation_Module.src.data_processing import processing_data
+from DoR_Automation_Module.src.data_preprocessing import processing_data
 
 tick = "AAPL"
 ticker = yf.Ticker(tick)
