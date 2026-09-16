@@ -13,7 +13,14 @@ def CC_histogram_table_daily(df):
     freq_table['Probability %'] = ((freq_table['Frequency']/total_candele) * 100).round(2)
     return freq_table
 
-print(CC_histogram_table_daily(dataframe))
+
+freq_table = CC_histogram_table_daily(dataframe)  
+dataframe = dataframe.drop(columns="Bin")
+combined = pd.concat(
+    [dataframe.reset_index(drop=True), freq_table.reset_index(drop=True)],
+    axis=1
+)
+print(combined)
 
 def HL_histogram_table_daily(df):
     HL_bins_daily =list(np.arange(0, 8.1, 1)) + [np.inf]
@@ -25,7 +32,7 @@ def HL_histogram_table_daily(df):
     freq_table['Probability %'] = ((freq_table['Frequency']/total_candele) * 100).round(2)
     return freq_table
 
-print(HL_histogram_table_daily(dataframe))
+
 
 def OC_histogram_table_daily(df):
     OC_bins_daily = [-np.inf] + list(np.arange(-6.0, 6.1, 1.5)) + [np.inf]
@@ -37,4 +44,3 @@ def OC_histogram_table_daily(df):
     freq_table['Probability %'] = ((freq_table['Frequency']/total_candele) * 100).round(2)
     return freq_table
     
-print(OC_histogram_table_daily(dataframe))
