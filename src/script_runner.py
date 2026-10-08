@@ -4,6 +4,7 @@ import yfinance as yf
 import os
 from DoR_Automation_Module.src.data_cleaning import data_cleaning as clean_data
 from DoR_Automation_Module.src.data_preprocessing import processing_data
+from DoR_Automation_Module.src.freq_table import CC_histogram_table, HL_histogram_table
 
 tick = "AAPL"
 ticker = yf.Ticker(tick)
