@@ -22,6 +22,8 @@ for name, interval in timeframes.items():
     df = df.reset_index()
     df = clean_data(df)
     df = processing_data(df)
+    df = CC_histogram_table(df, name)
+    df = HL_histogram_table(df, name)
     df.to_csv(f"DoR_Automation_Module/datasets/{tick}_DoR_{name}.csv", index=False)
     print(f"Fisier {tick}_DoR_{name} salvat")
 
