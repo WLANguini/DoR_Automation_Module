@@ -3,7 +3,7 @@ import numpy as np
 import yfinance as yf
 import os
 from DoR_Automation_Module.src.data_cleaning import data_cleaning as clean_data
-from DoR_Automation_Module.src.data_preprocessing import processing_data
+from DoR_Automation_Module.src.data_preprocessing import processing_data, data_format
 from DoR_Automation_Module.src.freq_table import CC_histogram_table, HL_histogram_table
 
 tick = "AAPL"
@@ -24,6 +24,7 @@ for name, interval in timeframes.items():
     df = processing_data(df)
     df = CC_histogram_table(df, name)
     df = HL_histogram_table(df, name)
+    df = data_format(df)
     df.to_csv(f"DoR_Automation_Module/datasets/{tick}_DoR_{name}.csv", index=False)
     print(f"Fisier {tick}_DoR_{name} salvat")
 
