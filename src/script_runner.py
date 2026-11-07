@@ -5,7 +5,7 @@ import os
 from DoR_Automation_Module.src.data_cleaning import data_cleaning as clean_data, recleaning
 from DoR_Automation_Module.src.data_preprocessing import processing_data, data_format
 from DoR_Automation_Module.src.freq_table import CC_histogram_table, HL_histogram_table
-from DoR_Automation_Module.src.desctiptive_statistics import add_descriptive_statistics
+from DoR_Automation_Module.src.desctiptive_statistics import add_descriptive_statistics_for_CC, add_descriptive_statistics_for_HL
 
 tick = "AAPL"
 ticker = yf.Ticker(tick)
@@ -24,8 +24,9 @@ for name, interval in timeframes.items():
     df = clean_data(df)
     df = processing_data(df)
     df = CC_histogram_table(df, name)
+    df = add_descriptive_statistics_for_CC(df)
     df = HL_histogram_table(df, name)
-    df = add_descriptive_statistics(df)
+    df = add_descriptive_statistics_for_HL(df)
     df = data_format(df)
     df = recleaning(df)
     df.to_excel(f"DoR_Automation_Module/datasets/{tick}_DoR_{name}.xlsx", index=False)
